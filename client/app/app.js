@@ -1,9 +1,11 @@
-
-// Rename main module and require more as needed
-angular.module('mean', ['mean.home', 'ngRoute'])
+angular.module('fromAtoB', ['fromAtoB.home', 'ngRoute'])
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
     //Set up Appropriate routes here
+      .when('/', {
+        templateUrl: 'app/home/home.html',
+        controller: 'HomeController'
+      })
       .when('/home', {
         templateUrl: 'app/home/home.html',
         controller: 'HomeController'
