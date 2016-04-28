@@ -1,16 +1,21 @@
-<form autocomplete="on">
+<form novalidate action="#" onsubmit="return validateFormOnSubmit(this);">
   <div class='searchBox'>
     <div class="input-from">
-    FROM<br><input placeholder="City or stop" />
+      FROM<br>
+      <input type="text" ng-model="userTrip.fromCity"
+             placeholder="City or stop"
+             ng-keydown="autoCompleteCities()" required />
     </div>
     <div class="input-to">
-    TO<br><input placeholder="City or stop" />
+      TO<br>
+      <input type="text" ng-model="userTrip.toCity" placeholder="City or stop" required />
     </div>
     <div class="input-departure-date">
-    DEPARTURE<br><input placeholder="Departure" />
+      DEPARTURE<br>
+      <input type="date" ng-model="userTrip.departureDate" placeholder="Departure" required />
     </div>
     <div class="input-return-date">
-    RETURN<br><input placeholder="Return" />
+      RETURN (OPTIONAL)<br><input type="date" ng-model="userTrip.returnDate" placeholder="Return" />
     </div>
   </div>
 </form>
