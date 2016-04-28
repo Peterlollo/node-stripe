@@ -1,4 +1,4 @@
-angular.module('fromAtoB', ['fromAtoB.home', 'ngRoute'])
+angular.module('fromAtoB', ['fromAtoB.home','fromAtoB.services', 'ngRoute'])
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
     //Set up Appropriate routes here
