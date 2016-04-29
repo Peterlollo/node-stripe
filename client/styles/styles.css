@@ -3,8 +3,20 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin-left: 20%;
-  margin-right: 20%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.searchButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.extended {
+   display: block;
+   margin-top: 15px;
+   content:" ";
 }
 @media only screen and (min-width: 768px) {
     /* tablets and desktop */
@@ -16,4 +28,8 @@
 
 @media only screen and (max-width: 767px) and (orientation: portrait) {
     /* portrait phones */
+}
+
+@-ms-viewport{
+  width: device-width;
 }

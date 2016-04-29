@@ -1,21 +1,68 @@
-<form novalidate action="#" onsubmit="return validateFormOnSubmit(this);">
+<form name="userTripSelection" novalidate action="#" onsubmit="return validateFormOnSubmit(this);">
   <div class='searchBox'>
-    <div class="input-from">
-      FROM<br>
-      <input type="text" ng-model="userTrip.fromCity"
-             placeholder="City or stop"
-             ng-keydown="autoCompleteCities()" required />
+
+
+    <!--FROM CITY-->
+    <div class="form-group">
+      <label>FROM</label><br>
+      <md-input-container md-no-float>
+        <md-icon md-svg-src="assets/ic_place.svg" style="display:inline-block;"></md-icon>
+        <input ng-model="userTrip.departureCity" name="departureCityInput" type="text" placeholder="City or stop" ng-keydown="autoCompleteCities()" ng-required="true" required="">
+        <div class="validation-messages" ng-messages="userTripSelection.departureCityInput.$error">
+          <div ng-message="required">A location is required!</div>
+        </div>
+      </md-input-container>
     </div>
-    <div class="input-to">
-      TO<br>
-      <input type="text" ng-model="userTrip.toCity" placeholder="City or stop" required />
+
+
+    <!--TO CITY-->
+    <div class="form-group">
+      <label>TO</label><br>
+      <md-input-container md-no-float>
+        <md-icon md-svg-src="assets/ic_place.svg" style="display:inline-block;"></md-icon>
+        <input ng-model="userTrip.destinationCity" name="destinationCityInput" type="text" placeholder="City or stop" ng-keydown="autoCompleteCities()" ng-required="true" >
+        <div class="validation-messages" ng-messages="userTripSelection.destinationCityInput.$error">
+          <div ng-message="required">A location is required!</div>
+        </div>
+      </md-input-container>
     </div>
-    <div class="input-departure-date">
-      DEPARTURE<br>
-      <input type="date" ng-model="userTrip.departureDate" placeholder="Departure" required />
+
+
+    <!--DEPARTURE DATE-->
+    <div class="form-group">
+      <label>DEPARTURE</label><br class="extended">
+      <md-datepicker name="departureDate" md-min-date="minDate" md-max-date="maxDate" ng-model="userTrip.departureDate" md-placeholder="Departure" md-no-float id="topMargin" ng-required="true"></md-datepicker>
+      <div class="validation-messages" ng-messages="userTripSelection.departureDate.$error">
+        <div ng-message="valid">The entered value is not a date!</div>
+        <!-- <div ng-message="required">This date is required!</div> -->
+        <div ng-message="mindate">Date is too early!</div>
+        <div ng-message="maxdate">Date is too late!</div>
+      </div>
     </div>
-    <div class="input-return-date">
-      RETURN (OPTIONAL)<br><input type="date" ng-model="userTrip.returnDate" placeholder="Return" />
+
+
+    <!--RETURN DATE-->
+    <div class="form-group">
+      <label>RETURN (OPTIONAL)</label><br class="extended">
+        <md-datepicker name="returnDate" md-min-date="minDate" md-max-date="maxDate" ng-model="userTrip.returnDate" md-placeholder="Return"></md-datepicker>
+      <div class="validation-messages" ng-messages="userTripSelection.returnDate.$error">
+        <div ng-message="valid">The entered value is not a date!</div>
+        <!-- <div ng-message="required">This date is required!</div> -->
+        <div ng-message="mindate">Date is too early!</div>
+        <div ng-message="maxdate">Date is too late!</div>
+      </div>
     </div>
+
+
+  <!--END SEARCH CLASS-->
   </div>
+
+  <!-- SEARCH BUTTON -->
+  <div class="searchButton">
+    <md-button type="submit" class="md-raised md-primary">SEARCH</md-button>
+  </div>
+
+
+<!--END INPUT FORM-->
 </form>
+
