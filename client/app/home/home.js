@@ -52,6 +52,7 @@ angular.module('fromAtoB.home', [])
 
     //Set date values for datepicker
     $scope.myDate = new Date();
+
     $scope.minDate = new Date(
       $scope.myDate.getFullYear(),
       $scope.myDate.getMonth(),
@@ -61,6 +62,11 @@ angular.module('fromAtoB.home', [])
       $scope.myDate.getMonth() + 3,
       $scope.myDate.getDate());
 
+      var date = new Date();
+      var day = date.getDate();
+      var month = date.getMonth() + 1;
+      var year = date.getFullYear();
+      $scope.dateToday = month + '/' + day + '/' + year;
 
     //User's selected trip
     $scope.userTrip = {
