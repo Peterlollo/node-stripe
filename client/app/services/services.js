@@ -3,8 +3,9 @@ angular.module('fromAtoB.services', [])
     var getCities = function() {
       return $http.get('/api/locations/')
                   .then(function(res) {
-                    console.log('res.data from getCities: ', res.data);
-                    return res.data;
+                    return res.data.map(function(location){
+                      return location.name;
+                    });
                   },
                   function(err) {
                     console.error(err);

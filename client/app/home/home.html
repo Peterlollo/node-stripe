@@ -1,11 +1,35 @@
+<!--Autcomplete Form-->
+<div class='searchBox'>
+
+<!--Autcomplete for States-->
+<md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in filteredStates" md-item-text="item.display" md-search-text-change="querySearch(searchText)">
+  <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.display}}</span>
+</md-autocomplete>
+searchText: {{searchText}};
+selectedItem = {{selectedItem}};
+
+
+<!--To Do: Implement Autocomplete for cities-->
+<md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in filteredStates" md-item-text="item.display" md-search-text-change="querySearch(searchText)">
+  <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.display}}</span>
+</md-autocomplete>
+searchText: {{searchText}};
+selectedItem = {{selectedItem}};
+
+
+</div>
+
+
+
+
+<!--Non Autocomplete Cities Form-->
 <form name="userTripSelection" novalidate action="#" onsubmit="return validateFormOnSubmit(this);">
   <div class='searchBox'>
-
 
     <!--FROM CITY-->
     <div class="form-group">
       <label>FROM</label><br>
-      <md-input-container md-no-float>
+      <md-input-container ng-model="selectedCity" typeahead="city for city in cities | filter:$viewValue" md-no-float>
         <md-icon md-svg-src="assets/ic_place.svg" style="display:inline-block;"></md-icon>
         <input ng-model="userTrip.departureCity" name="departureCityInput" type="text" placeholder="City or stop" ng-keydown="autoCompleteCities()" ng-required="true" required="">
         <div class="validation-messages" ng-messages="userTripSelection.departureCityInput.$error">
