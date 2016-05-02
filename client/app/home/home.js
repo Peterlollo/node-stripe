@@ -31,10 +31,22 @@ angular.module('fromAtoB.home', [])
 
 
     //Retrieve list of possible destinations
-    $scope.cities = Locations.getCities();
+    var locations;
+    if(!locations){
+      Locations.getCities().then(function(res){
+        locations = res;
+      });
+    }
 
     //To Do: Autocomplete for cities
-    $scope.selectedCity = undefined;
+    $scope.filteredLocations = [];
+    $scope.queryLocationSearch = function(search){
+      if(locations){
+        $scope.filteredLocations = locations.filter(function(loc){
+            return loc.name.indexOf(search) === 0;
+        });
+      }
+    }
 
 
 
@@ -51,6 +63,11 @@ angular.module('fromAtoB.home', [])
 
 
     //User's selected trip
-    $scope.userTrip = {};
+    $scope.userTrip = {
+      departureCity: undefined,
+      arrivalCity: undefined,
+      departureDate: undefined,
+      returnDate: undefined
+    };
 
   });

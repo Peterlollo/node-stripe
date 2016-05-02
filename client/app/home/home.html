@@ -5,19 +5,93 @@
 <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in filteredStates" md-item-text="item.display" md-search-text-change="querySearch(searchText)">
   <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.display}}</span>
 </md-autocomplete>
-searchText: {{searchText}};
-selectedItem = {{selectedItem}};
 
-
-<!--To Do: Implement Autocomplete for cities-->
-<md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in filteredStates" md-item-text="item.display" md-search-text-change="querySearch(searchText)">
-  <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.display}}</span>
+<!--Autocomplete for Departure City-->
+<md-autocomplete md-floating-label="Departure City or State" md-selected-item="userTrip.departureCity" md-search-text="departSearchText" md-items="item in filteredLocations" md-item-text="item" md-search-text-change="queryLocationSearch(departSearchText)">
+  <span md-highlight-text="departSearchText" md-highlight-flags="^i">{{item.name}}</span>
 </md-autocomplete>
-searchText: {{searchText}};
-selectedItem = {{selectedItem}};
+
 
 
 </div>
+<!--The MERGE-->
+
+<form name="userTripSelection" novalidate action="#" onsubmit="return validateFormOnSubmit(this);">
+  <div class='searchBox'>
+
+    <!--DEPARTURE CITY-->
+    <div class="form-group">
+      <md-input-container md-no-float>
+        <md-icon md-svg-src="assets/ic_place.svg" style="display:inline-block;"></md-icon>
+        <md-autocomplete md-floating-label="Departure city or state" md-selected-item="userTrip.departureCity" md-search-text="departSearchText" md-items="item in filteredLocations" md-item-text="item" md-search-text-change="queryLocationSearch(departSearchText)">
+          <span md-highlight-text="departSearchText" md-highlight-flags="^i">{{item.name}}</span>
+        </md-autocomplete>
+        <div class="validation-messages" ng-messages="userTrip.departureCity.$error">
+          <div ng-message="required">A location is required!</div>
+        </div>
+      </md-input-container>
+    </div>
+
+
+    <!--ARRIVAL CITY-->
+    <div class="form-group">
+      <md-input-container md-no-float>
+        <md-icon md-svg-src="assets/ic_place.svg" style="display:inline-block;"></md-icon>
+        <md-autocomplete md-floating-label="Arrival city or state" md-selected-item="userTrip.arrivalCity" md-search-text="arrivalSearchText" md-items="item in filteredLocations" md-item-text="item" md-search-text-change="queryLocationSearch(arrivalSearchText)">
+          <span md-highlight-text="arrivalSearchText" md-highlight-flags="^i">{{item.name}}</span>
+        </md-autocomplete>
+        <div class="validation-messages" ng-messages="userTrip.arrivalCity.$error">
+          <div ng-message="required">A location is required!</div>
+        </div>
+      </md-input-container>
+    </div>
+
+
+    <!--DEPARTURE DATE-->
+    <div class="form-group">
+      <br class="extended">
+      <md-datepicker name="departureDate" md-min-date="minDate" md-max-date="maxDate" ng-model="userTrip.departureDate" md-placeholder="Departure" md-no-float id="topMargin" ng-required="true"></md-datepicker>
+      <div class="validation-messages" ng-messages="userTripSelection.departureDate.$error">
+        <div ng-message="valid">The entered value is not a date!</div>
+        <!-- <div ng-message="required">This date is required!</div> -->
+        <div ng-message="mindate">Date is too early!</div>
+        <div ng-message="maxdate">Date is too late!</div>
+      </div>
+    </div>
+
+
+    <!--RETURN DATE-->
+    <div class="form-group">
+      <label>RETURN (OPTIONAL)</label><br class="extended">
+        <md-datepicker name="returnDate" md-min-date="minDate" md-max-date="maxDate" ng-model="userTrip.returnDate" md-placeholder="Return (Optional)"></md-datepicker>
+      <div class="validation-messages" ng-messages="userTripSelection.returnDate.$error">
+        <div ng-message="valid">The entered value is not a date!</div>
+        <!-- <div ng-message="required">This date is required!</div> -->
+        <div ng-message="mindate">Date is too early!</div>
+        <div ng-message="maxdate">Date is too late!</div>
+      </div>
+    </div>
+
+
+  <!--END SEARCH CLASS-->
+  </div>
+
+  <!-- SEARCH BUTTON -->
+  <div class="searchButton">
+    <md-button type="submit" class="md-raised md-primary">SEARCH</md-button>
+  </div>
+
+
+<!--END INPUT FORM-->
+</form>
+
+
+
+
+
+
+
+
 
 
 
@@ -29,9 +103,13 @@ selectedItem = {{selectedItem}};
     <!--FROM CITY-->
     <div class="form-group">
       <label>FROM</label><br>
+      <!-- <md-input-container ng-model="selectedCity" typeahead="city for city in cities | filter:$viewValue" md-no-float> -->
       <md-input-container ng-model="selectedCity" typeahead="city for city in cities | filter:$viewValue" md-no-float>
-        <md-icon md-svg-src="assets/ic_place.svg" style="display:inline-block;"></md-icon>
-        <input ng-model="userTrip.departureCity" name="departureCityInput" type="text" placeholder="City or stop" ng-keydown="autoCompleteCities()" ng-required="true" required="">
+          <md-icon md-svg-src="assets/ic_place.svg" style="display:inline-block;"></md-icon>
+          <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in filteredStates" md-item-text="item.display" md-search-text-change="querySearch(searchText)">
+            <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.display}}</span>
+          </md-autocomplete>
+        <!-- <input ng-model="userTrip.departureCity" name="departureCityInput" type="text" placeholder="City or stop" ng-keydown="autoCompleteCities()" ng-required="true" required=""> -->
         <div class="validation-messages" ng-messages="userTripSelection.departureCityInput.$error">
           <div ng-message="required">A location is required!</div>
         </div>
