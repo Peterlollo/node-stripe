@@ -1,12 +1,24 @@
+<header class='logo-header'>
+  <div class='flex'><img ng-src="../assets/ab_logo.png" class="header-image" /></div>
+  <div class='flex'><h2>Fast and cheap</h2></div>
+  <div class='flex'><h2>from A to B, no matter how.</h2></div>
+</header>
+
+<div class="searchButton">
+  <md-button ng-show="!openUserTrip" ng-click="openUserTrip = true" class="md-raised md-primary">GO</md-button>
+</div>
+
+<md-content class='outerSearchBox well' ng-show="openUserTrip">
 <form name="userTripSelection" novalidate action="#" onsubmit="return validateFormOnSubmit(this);">
-  <div class='searchBox'>
+  <div class='middleSearchBox'>
+  <div class='innerSearchBox'>
 
     <!--DEPARTURE CITY-->
     <div class="form-group">
       <label>FROM</label><br>
       <md-input-container md-no-float>
         <md-icon md-svg-src="assets/ic_place.svg" style="display:inline-block;"></md-icon>
-        <md-autocomplete placeholder="City or state" md-selected-item="userTrip.departureCity" md-search-text="departSearchText" md-items="item in filteredLocations" md-item-text="item" md-search-text-change="queryLocationSearch(departSearchText)">
+        <md-autocomplete placeholder="City or state" md-selected-item="userTrip.departureCity" md-search-text="departSearchText" md-items="item in filteredLocations" md-item-text="item.name" md-search-text-change="queryLocationSearch(departSearchText)">
           <span md-highlight-text="departSearchText" md-highlight-flags="^i">{{item.name}}</span>
         </md-autocomplete>
         <div class="validation-messages" ng-messages="userTrip.departureCity.$error">
@@ -21,7 +33,7 @@
       <label>TO</label><br>
       <md-input-container md-no-float>
         <md-icon md-svg-src="assets/ic_place.svg" style="display:inline-block;"></md-icon>
-        <md-autocomplete placeholder="City or state" md-selected-item="userTrip.arrivalCity" md-search-text="arrivalSearchText" md-items="item in filteredLocations" md-item-text="item" md-search-text-change="queryLocationSearch(arrivalSearchText)">
+        <md-autocomplete placeholder="City or state" md-selected-item="userTrip.arrivalCity" md-search-text="arrivalSearchText" md-items="item in filteredLocations" md-item-text="item.name" md-search-text-change="queryLocationSearch(arrivalSearchText)">
           <span md-highlight-text="arrivalSearchText" md-highlight-flags="^i">{{item.name}}</span>
         </md-autocomplete>
         <div class="validation-messages" ng-messages="userTrip.arrivalCity.$error">
@@ -63,9 +75,12 @@
 
   <!-- SEARCH BUTTON -->
   <div class="searchButton">
-    <md-button type="submit" class="md-raised md-primary">SEARCH</md-button>
+    <md-button type="submit" ng-click="submitUserTrip()" class="md-raised md-primary">SEARCH</md-button>
+  </div>
   </div>
 
 
 <!--END INPUT FORM-->
 </form>
+</md-content>
+

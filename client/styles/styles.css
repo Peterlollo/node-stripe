@@ -1,8 +1,31 @@
-.searchBox {
+body {
+  background: url('../assets/sky-mountains.jpeg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.innerSearchBox {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.middleSearchBox {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.outerSearchBox {
+  background-color: white;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px; /* future proofing */
+  -khtml-border-radius: 10px; /* for old Konqueror browsers */
   margin-left: 10%;
   margin-right: 10%;
 }
@@ -27,6 +50,30 @@
 md-icon {
   fill: black;
 }
+
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: space-around;
+  z-index: 20;
+}
+
+h2 {
+  color: white;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+}
+
+.header-image {
+  border-radius: 50%;
+  max-height: 100px;
+  max-width: 100px;
+}
+
 
 @media only screen and (min-width: 768px) {
     /* tablets and desktop */

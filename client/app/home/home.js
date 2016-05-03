@@ -76,4 +76,15 @@ angular.module('fromAtoB.home', [])
       returnDate: undefined
     };
 
+    $scope.submitUserTrip = function(){
+      return $http.post(
+        '/api/userTrips/',
+        $scope.userTrip
+        ).then(function(success){
+          console.log(success.data)
+        }, function(err){
+          console.log(err)
+        });
+    }
+
   });
