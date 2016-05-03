@@ -76,6 +76,9 @@ angular.module('fromAtoB.home', [])
       returnDate: undefined
     };
 
+    $scope.validateFormOnSubmit = function(form){
+    }
+
     $scope.submitUserTrip = function(){
       return $http.post(
         '/api/userTrips/',
@@ -87,4 +90,13 @@ angular.module('fromAtoB.home', [])
         });
     }
 
+    //Methods dealing with opening up well containing user input form
+    $scope.openUserTrip = false;
+    $(document).keypress(function(e) {
+      if(e.which == 13) {
+        if(!$scope.openUserTrip) {
+          $scope.$apply($scope.openUserTrip = true);
+        }
+      }
+    });
   });
