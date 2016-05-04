@@ -2,8 +2,9 @@ var request = require('request');
 
 module.exports = {
   bookTrip: function(req, res, next) {
-    //Send user trip info to database for data collection
-    //Process and Book User Trip
+    //SEND USER TRIP INFO TO DATABASE
+    //PROCESS AND BOOK USER TRIP
     res.json(req.body);
+    res.send(200);
   }
 }

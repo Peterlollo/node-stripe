@@ -78,6 +78,11 @@ button:hover {
   opacity: .7;
 }
 
+.error-message {
+  color: red;
+  font-size: 12px;
+}
+
 
 @media only screen and (min-width: 768px) {
     /* tablets and desktop */

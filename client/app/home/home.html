@@ -9,7 +9,7 @@
 </div>
 
 <md-content class='outerSearchBox well' ng-show="openUserTrip">
-<form novalidate action="#" name="userTripSelection" onsubmit="return validateFormOnSubmit(this);">
+<form novalidate action="#" name="userTripSelection">
   <div class='middleSearchBox'>
   <div class='innerSearchBox'>
 
@@ -18,14 +18,14 @@
       <label>FROM</label><br>
       <md-input-container md-no-float>
         <md-icon md-svg-src="assets/ic_place.svg" style="display:inline-block;"></md-icon>
-        <md-autocomplete name="departureCity" placeholder="City or state" md-selected-item="userTrip.departureCity" md-search-text="departSearchText" md-items="item in filteredLocations" md-item-text="item.name" md-search-text-change="queryLocationSearch(departSearchText)" required="true">
+        <md-autocomplete md-input-name="departureCity" placeholder="City or state" md-selected-item="userTrip.departureCity" md-search-text="departSearchText" md-items="item in filteredLocations" md-item-text="item.name" md-search-text-change="queryLocationSearch(departSearchText)" ng-required="true">
           <span md-highlight-text="departSearchText" md-highlight-flags="^i">{{item.name}}</span>
         </md-autocomplete>
+        <div class="error-message" ng-show="userTripErrors.departureCity">You must select a city from the list</div>
+        <!-- <div class="validation-messages error-message" ng-messages="userTripSelection.departureCity.$error">
+          <div ng-message="required">This field is required</div>
+        </div> -->
       </md-input-container>
-      <div class="validation-messages" ng-messages="true">
-        <div ng-show="userTripSelection.departureCity.$dirty">Location is required</div>
-        <div ng-message="required">A location is required!</div>
-      </div>
     </div>
 
 
@@ -34,12 +34,10 @@
       <label>TO</label><br>
       <md-input-container md-no-float>
         <md-icon md-svg-src="assets/ic_place.svg" style="display:inline-block;"></md-icon>
-        <md-autocomplete placeholder="City or state" md-selected-item="userTrip.arrivalCity" md-search-text="arrivalSearchText" md-items="item in filteredLocations" md-item-text="item.name" md-search-text-change="queryLocationSearch(arrivalSearchText)" ng-required="true">
+        <md-autocomplete md-input-name="arrivalCity" placeholder="City or state" md-selected-item="userTrip.arrivalCity" md-search-text="arrivalSearchText" md-items="item in filteredLocations" md-item-text="item.name" md-search-text-change="queryLocationSearch(arrivalSearchText)" ng-required="true">
           <span md-highlight-text="arrivalSearchText" md-highlight-flags="^i">{{item.name}}</span>
         </md-autocomplete>
-        <div class="validation-messages" ng-messages="userTrip.arrivalCity.$error">
-          <div ng-message="required">A location is required!</div>
-        </div>
+        <div class="error-message" ng-show="userTripErrors.arrivalCity">You must select a city from the list</div>
       </md-input-container>
     </div>
 
@@ -47,10 +45,10 @@
     <!--DEPARTURE DATE-->
     <div class="form-group">
       <label>DEPARTURE</label><br class="extended">
-      <md-datepicker name="departureDate" md-min-date="minDate" md-max-date="maxDate" ng-model="userTrip.departureDate" md-placeholder="{{dateToday}}" md-no-float id="topMargin" ng-required="true"></md-datepicker>
-      <div class="validation-messages" ng-messages="userTripSelection.departureDate.$error">
+      <md-datepicker name="departureDate" md-min-date="minDate" md-max-date="maxDate" ng-model="userTrip.departureDate" md-placeholder="{{dateToday}}" md-no-float id="topMargin" required></md-datepicker>
+      <div class="error-message" ng-show="userTripErrors.departureDate">This date is required</div>
+      <div class="validation-messages error-message" ng-messages="userTripSelection.departureDate.$error">
         <div ng-message="valid">The entered value is not a date!</div>
-        <!-- <div ng-message="required">This date is required!</div> -->
         <div ng-message="mindate">Date is too early!</div>
         <div ng-message="maxdate">Date is too late!</div>
       </div>
@@ -62,9 +60,9 @@
       <label>RETURN (OPTIONAL)</label><br class="extended">
         <md-datepicker name="returnDate" md-min-date="minDate" md-max-date="maxDate" ng-model="userTrip.returnDate" md-placeholder="{{dateToday}}">
         </md-datepicker>
-      <div class="validation-messages" ng-messages="userTripSelection.returnDate.$error">
+        <div class="error-message" ng-show="userTripErrors.returnDate">Must be later than departure</div>
+      <div class="validation-messages error-message" ng-messages="userTripSelection.returnDate.$error">
         <div ng-message="valid">The entered value is not a date!</div>
-        <!-- <div ng-message="required">This date is required!</div> -->
         <div ng-message="mindate">Date is too early!</div>
         <div ng-message="maxdate">Date is too late!</div>
       </div>
@@ -76,7 +74,7 @@
 
   <!-- SEARCH BUTTON -->
   <div class="searchButton">
-    <md-button type="submit" ng-click="validateFormOnSubmit(this)" class="md-raised md-primary">SEARCH</md-button>
+    <md-button ng-click="validateForm()" class="md-raised md-primary">SEARCH</md-button>
   </div>
   </div>
 

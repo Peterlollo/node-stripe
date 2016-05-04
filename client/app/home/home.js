@@ -1,49 +1,26 @@
 angular.module('fromAtoB.home', [])
-  .controller('HomeController', function($scope, $http, Locations){
-
-    //Working Autcomplete for States
-    function loadStates() {
-               var allStates = 'Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware,\
-                  Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana,\
-                  Maine, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana,\
-                  Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, New York, North Carolina,\
-                  North Dakota, Ohio, Oklahoma, Oregon, Pennsylvania, Rhode Island, South Carolina,\
-                  South Dakota, Tennessee, Texas, Utah, Vermont, Virginia, Washington, West Virginia,\
-                  Wisconsin, Wyoming';
-               return allStates.split(/, +/g).map( function (state) {
-                  return {
-                     value: state.toLowerCase(),
-                     display: state
-                  };
-               });
-            }
-
-    $scope.selectedItem = undefined;
-    $scope.searchText = undefined;
-    var states = loadStates();
-    $scope.filteredStates = [];
-    $scope.querySearch = function(searchText){
-      $scope.filteredStates = states.filter(function(state){
-        return state.value.indexOf(searchText) === 0;
-      });
-    }
-
-
+  .controller('HomeController', function($scope, $http, Locations, $location){
 
     //Retrieve list of possible destinations
     var locations;
+    var cities = {};
     if(!locations){
       Locations.getCities().then(function(res){
         locations = res;
+        locations.forEach(function(loc) {
+          cities[loc.name] = true;
+        })
+        console.log('cities, ', cities);
       });
     }
 
     //To Do: Autocomplete for cities
     $scope.filteredLocations = [];
     $scope.queryLocationSearch = function(search){
+      if(search) search = search.toLowerCase();
       if(locations){
         $scope.filteredLocations = locations.filter(function(loc){
-            return loc.name.indexOf(search) === 0;
+            return loc.name.toLowerCase().indexOf(search) === 0;
         });
       }
     }
@@ -76,10 +53,49 @@ angular.module('fromAtoB.home', [])
       returnDate: undefined
     };
 
-    $scope.validateFormOnSubmit = function(form){
+    $scope.userTripErrors = {
+      departureCity: false,
+      arrivalCity: false,
+      departureDate: false,
+      returnDate: false
     }
 
-    $scope.submitUserTrip = function(){
+    $scope.changeModel = function(){
+      $scope.userTrip.departureCity = $scope.departSearchText;
+      $scope.userTrip.arrivalCity = $scope.arrivalSearchText;
+    }
+
+    $scope.validateForm = function(){
+      console.log('date parse depart: ', Date.parse($scope.userTrip.departureDate));
+      var validForm = true;
+      for(var input in $scope.userTripErrors){
+        $scope.userTripErrors[input] = false;
+      }
+      $scope.userTrip.departureCity = $scope.userTrip.departureCity || $scope.departSearchText || '';
+      $scope.userTrip.arrivalCity = $scope.userTrip.arrivalCity || $scope.arrivalSearchText || '';
+      if(!cities[$scope.userTrip.departureCity.name]) {
+        $scope.userTripErrors.departureCity = true;
+        validForm = false;
+      }
+      if(!cities[$scope.userTrip.arrivalCity.name]) {
+        $scope.userTripErrors.arrivalCity = true;
+        validForm = false;
+      }
+      if(!$scope.userTrip.departureDate){
+        $scope.userTripErrors.departureDate = true;
+        validForm = false;
+      }
+      if(Date.parse($scope.userTrip.departureDate) > Date.parse($scope.userTrip.returnDate)) {
+        $scope.userTripErrors.returnDate = true;
+        validForm = false;
+      }
+      if(validForm) {
+        submitUserTrip();
+      }
+    }
+
+    var submitUserTrip = function(){
+      $location.path('/submitted');
       return $http.post(
         '/api/userTrips/',
         $scope.userTrip
