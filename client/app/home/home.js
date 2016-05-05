@@ -1,7 +1,7 @@
 angular.module('fromAtoB.home', [])
-  .controller('HomeController', function($scope, $http, Locations, $location){
+  .controller('HomeController', function($scope, $http, Locations, $location, DateServices){
 
-    //Retrieve list of possible destinations
+    //RETRIEVE DESTINATIONS FROM API
     var locations;
     var cities = {};
     if(!locations){
@@ -13,38 +13,22 @@ angular.module('fromAtoB.home', [])
       });
     }
 
-    //To Do: Autocomplete for cities
+    //AUTOCOMPLETE FUNCTIONALITY FOR LOCATION SEARCH FIELDS
     $scope.filteredLocations = [];
     $scope.queryLocationSearch = function(search){
-      if(search) search = search.toLowerCase();
-      if(locations){
+      if(locations && search){
         $scope.filteredLocations = locations.filter(function(loc){
-            return loc.name.toLowerCase().indexOf(search) === 0;
+            return loc.name.toLowerCase().indexOf(search.toLowerCase()) === 0;
         });
       }
     }
 
+    //SET DATE VALUES FOR DATE SELECTION INPUT FIELDS
+    $scope.dateToday = DateServices.getDate()['dateToday'];
+    $scope.minDate = DateServices.getDate()['minDate'];
+    $scope.maxDate = DateServices.getDate()['maxDate'];
 
-
-    //Set date values for datepicker
-    $scope.myDate = new Date();
-
-    $scope.minDate = new Date(
-      $scope.myDate.getFullYear(),
-      $scope.myDate.getMonth(),
-      $scope.myDate.getDate());
-      $scope.maxDate = new Date(
-      $scope.myDate.getFullYear(),
-      $scope.myDate.getMonth() + 3,
-      $scope.myDate.getDate());
-
-      var date = new Date();
-      var day = date.getDate();
-      var month = date.getMonth() + 1;
-      var year = date.getFullYear();
-      $scope.dateToday = month + '/' + day + '/' + year;
-
-    //User's selected trip
+    //USER TRIP OBJECT
     $scope.userTrip = {
       departureCity: undefined,
       arrivalCity: undefined,
@@ -52,6 +36,7 @@ angular.module('fromAtoB.home', [])
       returnDate: undefined
     };
 
+    //INPUT VALIDATION OBJECT FOR USER TRIP
     $scope.userTripErrors = {
       departureCity: false,
       arrivalCity: false,
@@ -59,11 +44,13 @@ angular.module('fromAtoB.home', [])
       returnDate: false
     }
 
+    //DATA BINDING BETWEEN USER TRIP OBJECT AND HTML INPUT FIELDS
     $scope.changeModel = function(){
       $scope.userTrip.departureCity = $scope.departSearchText;
       $scope.userTrip.arrivalCity = $scope.arrivalSearchText;
     }
 
+    //PERFORM INPUT VALIDATION ON SUBMIT FOR USER TRIP OBJECT
     $scope.validateForm = function(){
       var validForm = true;
       for(var input in $scope.userTripErrors){
@@ -92,6 +79,7 @@ angular.module('fromAtoB.home', [])
       }
     }
 
+    //SUBMIT VALID USER TRIP OBJECT TO API
     var submitUserTrip = function(){
       $location.path('/submitted');
       return $http.post(
@@ -104,7 +92,7 @@ angular.module('fromAtoB.home', [])
         });
     }
 
-    //Methods dealing with opening up well containing user input form
+    //METHODS HANDLING INITIAL OPENING OF USER TRIP SELECTION FORM
     $scope.openUserTrip = false;
     $(document).keypress(function(e) {
       if(e.which == 13) {
