@@ -1,7 +1,7 @@
 angular.module('fromAtoB', ['fromAtoB.home', 'fromAtoB.submitted', 'fromAtoB.services', 'ngRoute', 'ngMaterial', 'ngMessages'])
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
-    //Set up Appropriate routes here
+    //FRONT END ROUTES
       .when('/', {
         templateUrl: 'app/home/home.html',
         controller: 'HomeController'
@@ -14,6 +14,4 @@ angular.module('fromAtoB', ['fromAtoB.home', 'fromAtoB.submitted', 'fromAtoB.ser
         templateUrl: 'app/submitted/submitted.html',
         controller: 'SubmittedController'
       });
-      //Require and add $httpProvider interceptor here if needed
   }]);
-  //Add authorization checks here if needed

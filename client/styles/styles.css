@@ -11,6 +11,10 @@ body {
   font-family: 'Fira Sans', sans-serif;
 }
 
+label {
+  font-family: Geneva, Verdana, serif;
+}
+
 .innerSearchBox {
   display: flex;
   flex-direction: row;
@@ -85,7 +89,7 @@ button:hover {
 }
 
 .error-message {
-  color: red;
+  color: rgb(221,44,0);
   font-size: 12px;
 }
 
