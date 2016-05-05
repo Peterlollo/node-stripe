@@ -7,6 +7,10 @@ body {
   min-height: 1000px;
 }
 
+.header-font {
+  font-family: 'Fira Sans', sans-serif;
+}
+
 .innerSearchBox {
   display: flex;
   flex-direction: row;
@@ -72,8 +76,8 @@ h2 {
 
 .header-image {
   border-radius: 50%;
-  max-height: 100px;
-  max-width: 100px;
+  max-height: 170px;
+  max-width: 170px;
 }
 
 button:hover {

@@ -3,4 +3,10 @@ angular.module('fromAtoB.submitted', [])
     $scope.backToHomePage = function(){
       $location.path('/home');
     }
+
+    $(document).keypress(function(e) {
+      if(e.which == 13) {
+        $scope.$apply($scope.backToHomePage());
+      }
+    });
   });
