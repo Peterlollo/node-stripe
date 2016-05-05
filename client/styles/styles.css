@@ -7,13 +7,34 @@ body {
   min-height: 1000px;
 }
 
-.header-font {
-  font-family: 'Fira Sans', sans-serif;
+/* HEADER */
+
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: space-around;
+  z-index: 20;
+  padding-top: 50px;
 }
 
-label {
-  font-family: Geneva, Verdana, serif;
+.header-font {
+  font-family: 'Fira Sans', sans-serif;
+  color: white;
 }
+
+.header-image {
+  border-radius: 50%;
+  max-height: 170px;
+  max-width: 170px;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+}
+
+/* FLEX BOX STYLING FOR USER INPUT FORM */
 
 .innerSearchBox {
   display: flex;
@@ -39,10 +60,15 @@ label {
   margin-right: 10%;
 }
 
-.searchButton {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+.md-whiteframe-z1 {
+    box-shadow: none;
+    background-color: white;
+}
+
+/* ELEMENTS WITHIN EACH FORM GROUP */
+
+label {
+  font-family: Geneva, Verdana, serif;
 }
 
 .extended {
@@ -51,48 +77,30 @@ label {
    content:" ";
 }
 
-.md-whiteframe-z1 {
-    box-shadow: none;
-    background-color: white;
+/* BUTTONS AND ICONS */
+
+.searchButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 md-icon {
   fill: black;
 }
 
-header {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: space-around;
-  z-index: 20;
-  padding-top: 50px;
-}
-
-h2 {
-  color: white;
-}
-
-.flex {
-  display: flex;
-  justify-content: center;
-}
-
-.header-image {
-  border-radius: 50%;
-  max-height: 170px;
-  max-width: 170px;
-}
-
 button:hover {
   opacity: .7;
 }
+
+/* ERROR MESSAGES */
 
 .error-message {
   color: rgb(221,44,0);
   font-size: 12px;
 }
 
+/* STANDARD MEDIA QUERY BREAK POINTS IF NECESSARY FOR ADDITONAL FUNCTIONALITY */
 
 @media only screen and (min-width: 768px) {
     /* tablets and desktop */
