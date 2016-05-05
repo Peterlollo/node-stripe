@@ -9,3 +9,7 @@ Utilizes angular's material-UI, autocomplete, and ngMessages for input validatio
 -From root directory in terminal, run <npm install>
 -From root directory in terminal, run <nodemon server/server.js> or <node server/server.js>
 -Point your browser to the address: http://localhost:8000
+
+#Upon Successful Submission of User Trip
+-User Trip Object will print to the console
+
