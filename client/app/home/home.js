@@ -10,7 +10,6 @@ angular.module('fromAtoB.home', [])
         locations.forEach(function(loc) {
           cities[loc.name] = true;
         })
-        console.log('cities, ', cities);
       });
     }
 
@@ -66,7 +65,6 @@ angular.module('fromAtoB.home', [])
     }
 
     $scope.validateForm = function(){
-      console.log('date parse depart: ', Date.parse($scope.userTrip.departureDate));
       var validForm = true;
       for(var input in $scope.userTripErrors){
         $scope.userTripErrors[input] = false;

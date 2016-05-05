@@ -1,5 +1,5 @@
 <header class='logo-header'>
-  <div class='flex'><img ng-src="../assets/ab_logo.png" class="header-image" /></div>
+  <div class='flex'><img ng-src="../assets/ab_logo_white_background.png" class="header-image" /></div>
   <div class='flex'><h2>Fast and cheap</h2></div>
   <div class='flex'><h2>from A to B, no matter how.</h2></div>
 </header>
@@ -17,8 +17,8 @@
     <div class="form-group">
       <label>FROM</label><br>
       <md-input-container md-no-float>
-        <md-icon md-svg-src="assets/ic_place.svg" style="display:inline-block;"></md-icon>
-        <md-autocomplete md-input-name="departureCity" placeholder="City or state" md-selected-item="userTrip.departureCity" md-search-text="departSearchText" md-items="item in filteredLocations" md-item-text="item.name" md-search-text-change="queryLocationSearch(departSearchText)" ng-required="true">
+        <md-icon md-svg-src="assets/ic_place.svg" style="display:inline-block;" ngClick="openAutoCompleteMenu(departureCity)"></md-icon>
+        <md-autocomplete md-autoselect="true" md-input-name="departureCity" placeholder="City or state" md-selected-item="userTrip.departureCity" md-search-text="departSearchText" md-items="item in filteredLocations" md-item-text="item.name" md-search-text-change="queryLocationSearch(departSearchText)" ng-required="true">
           <span md-highlight-text="departSearchText" md-highlight-flags="^i">{{item.name}}</span>
         </md-autocomplete>
         <div class="error-message" ng-show="userTripErrors.departureCity">You must select a city from the list</div>
@@ -34,7 +34,7 @@
       <label>TO</label><br>
       <md-input-container md-no-float>
         <md-icon md-svg-src="assets/ic_place.svg" style="display:inline-block;"></md-icon>
-        <md-autocomplete md-input-name="arrivalCity" placeholder="City or state" md-selected-item="userTrip.arrivalCity" md-search-text="arrivalSearchText" md-items="item in filteredLocations" md-item-text="item.name" md-search-text-change="queryLocationSearch(arrivalSearchText)" ng-required="true">
+        <md-autocomplete md-autoselect="true" md-input-name="arrivalCity" placeholder="City or state" md-selected-item="userTrip.arrivalCity" md-search-text="arrivalSearchText" md-items="item in filteredLocations" md-item-text="item.name" md-search-text-change="queryLocationSearch(arrivalSearchText)" ng-required="true">
           <span md-highlight-text="arrivalSearchText" md-highlight-flags="^i">{{item.name}}</span>
         </md-autocomplete>
         <div class="error-message" ng-show="userTripErrors.arrivalCity">You must select a city from the list</div>

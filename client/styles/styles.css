@@ -4,15 +4,16 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  min-height: 1000px;
 }
 
 .innerSearchBox {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
-  margin-left: 10%;
-  margin-right: 10%;
+  justify-content: space-between;
+  margin-left: 2%;
+  margin-right: 2%;
 }
 
 .middleSearchBox {
@@ -57,6 +58,7 @@ header {
   justify-content: center;
   align-content: space-around;
   z-index: 20;
+  padding-top: 50px;
 }
 
 h2 {
