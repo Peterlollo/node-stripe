@@ -17,5 +17,5 @@ Utilizes angular's material-UI, autocomplete, and ngMessages for input validatio
 -Point your browser to the address: http://localhost:8000 <br />
 
 #Upon Successful Submission of User Trip
--User Trip Object will print to the console
+-User Trip Object will post to the api/userTrips endpoint and print to the browser console.
 

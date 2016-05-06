@@ -1,5 +1,5 @@
 angular.module('fromAtoB.home', [])
-  .controller('HomeController', function($scope, $http, Locations, $location, DateServices){
+  .controller('HomeController', function($scope, $http, Locations, $location, DateServices, InputHandling){
 
     //RETRIEVE DESTINATIONS FROM API
     var locations;
@@ -52,28 +52,12 @@ angular.module('fromAtoB.home', [])
 
     //PERFORM INPUT VALIDATION ON SUBMIT FOR USER TRIP OBJECT
     $scope.validateForm = function(){
-      var validForm = true;
-      for(var input in $scope.userTripErrors){
-        $scope.userTripErrors[input] = false;
-      }
-      $scope.userTrip.departureCity = $scope.userTrip.departureCity || $scope.departSearchText || '';
-      $scope.userTrip.arrivalCity = $scope.userTrip.arrivalCity || $scope.arrivalSearchText || '';
-      if(!cities[$scope.userTrip.departureCity.name]) {
-        $scope.userTripErrors.departureCity = true;
-        validForm = false;
-      }
-      if(!cities[$scope.userTrip.arrivalCity.name]) {
-        $scope.userTripErrors.arrivalCity = true;
-        validForm = false;
-      }
-      if(!$scope.userTrip.departureDate){
-        $scope.userTripErrors.departureDate = true;
-        validForm = false;
-      }
-      if(Date.parse($scope.userTrip.departureDate) > Date.parse($scope.userTrip.returnDate)) {
-        $scope.userTripErrors.returnDate = true;
-        validForm = false;
-      }
+      validForm = InputHandling.resetErrors($scope.userTripErrors);
+      var departCity = $scope.userTrip.departureCity || $scope.departSearchText || '';
+      var arrivalCity = $scope.userTrip.arrivalCity || $scope.arrivalSearchText || '';
+      validForm = InputHandling.checkCityField(cities, departCity, $scope.userTrip, $scope.userTripErrors, locations, 'depart', validForm);
+      validForm =  InputHandling.checkCityField(cities, arrivalCity, $scope.userTrip, $scope.userTripErrors, locations, 'arrival', validForm);
+      validForm = InputHandling.checkDates($scope.userTrip, $scope.userTripErrors, validForm);
       if(validForm) {
         submitUserTrip();
       }
