@@ -11,6 +11,7 @@ Utilizes angular's material-UI, autocomplete, and ngMessages for input validatio
 #To Run App
 -git clone app or download zip file <br />
 -From root directory in terminal, run "bower install" <br />
+-If prompted, install xCode <br />
 -From root directory in terminal, run "npm install" <br />
 -From root directory in terminal, run "node server/server.js" <br />
 -Point your browser to the address: http://localhost:8000 <br />
