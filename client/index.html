@@ -19,10 +19,11 @@
     <div class='flex header-font'><h2>from A to B, no matter how.</h2></div>
   </header>
   <!-- OPEN USER TRIP SELECTION FORM -->
+
   <div class="searchButton">
     <md-button class="md-raised md-primary header-font">GO</md-button>
   </div>
-  <form id="payment-form" action="buy.php" method="POST">
+  <form id="payment-form" action="/api/payments" method="POST">
     <div id="payment-errors"></div>
     <label>Card Number</label>
     <input type="text" size="20" autocomplete="off">
