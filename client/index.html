@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
+
   <head>
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" />
-    <title>fromAtoB</title>
+    <title>Stripe-Node</title>
+
+    <!--FONTS-->
     <link href='https://fonts.googleapis.com/css?family=Fira+Sans:500' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="lib/angular-material/angular-material.css">
+
+    <!--Material Design-->
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.green-indigo.min.css" />
+    <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!--Favicon and custom styles sheet-->
     <link rel="shortcut icon" href="/assets/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="styles/styles.css" />
+
+    <!--Jquery and Stripe Scripts-->
     <script src="lib/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
     <script type="text/javascript">
@@ -14,37 +26,66 @@
    </script>
     <script type="text/javascript" src="js/payment.js"></script>
   </head>
+
+
   <body>
+  <!--HEADER-->
   <header>
     <div class='flex'><img src="../assets/ab_logo_white_background.png" class="header-image" /></div>
-    <div class='flex header-font'><h2>Fast and cheap</h2></div>
-    <div class='flex header-font'><h2>from A to B, no matter how.</h2></div>
+    <div class='flex header-font'><h2>Stripe Payment Form</h2></div>
   </header>
-  <!-- OPEN USER TRIP SELECTION FORM -->
-  <div class='form flex'>
 
+  <!--PAYMENT FORM-->
+  <div class='pay-form flex'>
     <form id="payment-form" action="/api/payments" method="POST">
 
+      <!--ERROR DISPLAY HANDLING-->
       <div id="payment-errors" class="flex"></div>
 
+      <!--CREDIT CARD NUMBER FIELD-->
       <div class="flex">
-        <label>Card Number</label>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+           <input class="card-number mdl-textfield__input" type="text" id="card-number" autocomplete="off">
+           <label class="mdl-textfield__label" for="card-number">Card Number, No Spaces Or Hyphens...</label>
+           <!-- <span>Enter the number without spaces or hyphens.</span> -->
+         </div>
+      <!--   <label>Card Number</label>
         <input class="card-number input-medium" type="text" size="20" autocomplete="off">
-        <span>Enter the number without spaces or hyphens.</span>
+        <span>Enter the number without spaces or hyphens.</span> -->
       </div>
 
+      <!--CVC FIELD-->
       <div class="flex">
-        <label>CVC</label>
-        <input class="card-cvc input-mini" type="text" size="4" autocomplete="off">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="card-cvc card-number mdl-textfield__input" type="text" id="card-cvc" autocomplete="off">
+          <label class="mdl-textfield__label" for="card-cvc">CVC</label>
+        </div>
+        <!-- <label>CVC</label>
+        <input class="card-cvc input-mini" type="text" size="4" autocomplete="off"> -->
       </div>
+
+      <!--EXPIRATION DATE FIELD-->
       <div class="flex">
-        <label>Expiration (MM/YYYY)</label>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="card-expiry-month card-cvc card-number mdl-textfield__input" type="text" id="card-expiry-month" autocomplete="off">
+          <label class="mdl-textfield__label" for="card-expiry-month">Month (MM)</label>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="card-expiry-year card-cvc card-number mdl-textfield__input" type="text" id="card-expiry-year" autocomplete="off">
+          <label class="mdl-textfield__label" for="card-expiry-year">Year (YYYY)</label>
+        </div>
+        <!-- <label>Expiration (MM/YYYY)</label>
         <input class="card-expiry-month input-mini" type="text" size="2">
         <span> / </span>
-        <input class="card-expiry-year input-mini" type="text" size="4">
+        <input class="card-expiry-year input-mini" type="text" size="4"> -->
       </div>
+
+      <!--SUBMIT BUTTON-->
       <div class="flex">
-        <button type="submit" class="btn" id="submitBtn">Submit Payment</button>
+        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="submitBtn">
+          SEND PAYMENT
+        </button>
+        <!-- <button type="submit" class="btn" id="submitBtn">Submit Payment</button> -->
       </div>
     </form>
   </div>

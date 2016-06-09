@@ -1,6 +1,5 @@
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
-var haml = require('hamljs');
 
 
 module.exports = function(app, express) {

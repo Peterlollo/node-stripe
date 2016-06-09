@@ -102,13 +102,15 @@ button:hover {
 
 /* PAYMENT FORM */
 
-div.form {
+div.pay-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-content: space-around;
   z-index: 20;
   padding-top: 50px;
+  margin-left: 20%;
+  margin-right: 20%;
 }
 
 /* STANDARD MEDIA QUERY BREAK POINTS IF NECESSARY FOR ADDITONAL FUNCTIONALITY */
