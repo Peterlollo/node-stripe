@@ -100,6 +100,17 @@ button:hover {
   font-size: 12px;
 }
 
+/* PAYMENT FORM */
+
+div.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: space-around;
+  z-index: 20;
+  padding-top: 50px;
+}
+
 /* STANDARD MEDIA QUERY BREAK POINTS IF NECESSARY FOR ADDITONAL FUNCTIONALITY */
 
 @media only screen and (min-width: 768px) {

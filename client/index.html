@@ -19,23 +19,33 @@
     <div class='flex header-font'><h2>from A to B, no matter how.</h2></div>
   </header>
   <!-- OPEN USER TRIP SELECTION FORM -->
+  <div class='form flex'>
 
-  <div class="searchButton">
-    <md-button class="md-raised md-primary header-font">GO</md-button>
+    <form id="payment-form" action="/api/payments" method="POST">
+
+      <div id="payment-errors" class="flex"></div>
+
+      <div class="flex">
+        <label>Card Number</label>
+        <input type="text" size="20" autocomplete="off">
+        <span>Enter the number without spaces or hyphens.</span>
+      </div>
+
+      <div class="flex">
+        <label>CVC</label>
+        <input type="text" size="4" autocomplete="off">
+      </div>
+      <div class="flex">
+        <label>Expiration (MM/YYYY)</label>
+        <input type="text" size="2">
+        <span> / </span>
+        <input type="text" size="4">
+      </div>
+      <div class="flex">
+        <button type="submit" class="btn" id="submitBtn">Submit Payment</button>
+      </div>
+    </form>
   </div>
-  <form id="payment-form" action="/api/payments" method="POST">
-    <div id="payment-errors"></div>
-    <label>Card Number</label>
-    <input type="text" size="20" autocomplete="off">
-    <span>Enter the number without spaces or hyphens.</span>
-    <label>CVC</label>
-    <input type="text" size="4" autocomplete="off">
-    <label>Expiration (MM/YYYY)</label>
-    <input type="text" size="2">
-    <span> / </span>
-    <input type="text" size="4">
-    <button type="submit" class="btn" id="submitBtn">Submit Payment</button>
-  </form>
 
   </body>
 </html>
