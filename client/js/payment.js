@@ -12,7 +12,7 @@ $(document).ready(function() {
             cvcNum = $('.card-cvc').val(),
             expMonth = $('.card-expiry-month').val(),
             expYear = $('.card-expiry-year').val();
-            console.log(expMonth, ' month and year ', expYear);
+        console.log(expMonth, ' month and year ', expYear);
 
         // Validate the number:
         if (!Stripe.card.validateCardNumber(ccNum)) {
