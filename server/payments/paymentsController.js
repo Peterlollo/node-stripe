@@ -4,9 +4,11 @@ module.exports = {
   printPayment: function(req, res, next) {
     //SEND USER TRIP INFO TO DATABASE
     //PROCESS AND BOOK USER TRIP
-    console.log('THE TOKEN=====>>>>>>>', req.body);
-    res.render('paid')
-    // res.json(req.body);
-    // res.send(200);
+     var tokenObj = req.body
+     console.log('THE TOKEN=====>>>>>>>', tokenObj);
+     //res.render('paid')
+     res.render('paid', { token: tokenObj.stripeToken })
+     // res.json(req.body);
+     // res.send(200);
   }
 }
