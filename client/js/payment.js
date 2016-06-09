@@ -57,7 +57,7 @@ $(document).ready(function() {
     // Add the token to the form:
     f.append('<input type="hidden" name="stripeToken" value="' + token + '" />');
     // Submit the form:
-    f.get(0).submit();
+    //f.get(0).submit();
   }
 }
 
