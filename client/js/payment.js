@@ -53,6 +53,7 @@ $(document).ready(function() {
     var f = $("#payment-form");
     // Get the token from the response:
     var token = response.id;
+    console.log('THE TOKEN+++++>>>>>>', token);
     // Add the token to the form:
     f.append('<input type="hidden" name="stripeToken" value="' + token + '" />');
     // Submit the form:
