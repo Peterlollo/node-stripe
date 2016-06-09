@@ -46,7 +46,7 @@ $(document).ready(function() {
 
 
 
-
+//HANDLE ASYNC RESPONSE FROM STRIPE
  function stripeResponseHandler(status, response) {
   if (response.error) {
       reportError(response.error.message);
@@ -63,8 +63,8 @@ $(document).ready(function() {
   }
 }
 
+//HANDLE USER ERRORS IN PAYMENT FORM
 function reportError(msg) {
-
     // Show the error in the form:
     $('#payment-errors').text(msg).addClass('error');
 
