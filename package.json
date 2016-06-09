@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "postinstall": "./node_modules/bower/bin/bower install",
     "test": "echo \"Error: no test specified\" && exit 1"
-    "post-install": "bower install"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,9 @@
     "url": "https://github.com/Peterlollo/MEAN-Scaffold/issues"
   },
   "homepage": "https://github.com/Peterlollo/MEAN-Scaffold#readme",
+  "dependencies": {
+    "bower": "^1.3.12"
+  },
   "dependencies": {
     "express": "^4.13.4",
     "body-parser": "^1.4.3",
