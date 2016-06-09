@@ -41,7 +41,7 @@ $(document).ready(function() {
          }
         // Prevent the form from submitting:
         return false;
-    }); // form submission
+    });
 }); // document ready.
 
 
@@ -72,5 +72,4 @@ function reportError(msg) {
     $('#submitBtn').prop('disabled', false);
 
     return false;
-
 }

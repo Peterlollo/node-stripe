@@ -29,29 +29,30 @@
 
 
   <body>
+
+
   <!--HEADER-->
   <header>
     <div class='flex'><img src="../assets/ab_logo_white_background.png" class="header-image" /></div>
     <div class='flex header-font'><h2>Stripe Payment Form</h2></div>
   </header>
 
+
   <!--PAYMENT FORM-->
   <div class='pay-form flex'>
     <form id="payment-form" action="/api/payments" method="POST">
 
       <!--ERROR DISPLAY HANDLING-->
-      <div id="payment-errors" class="flex"></div>
+      <div class="flex">
+        <div id="payment-errors" class="flex error-message"></div>
+      </div>
 
       <!--CREDIT CARD NUMBER FIELD-->
       <div class="flex">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
            <input class="card-number mdl-textfield__input" type="text" id="card-number" autocomplete="off">
            <label class="mdl-textfield__label" for="card-number">Card Number, No Spaces Or Hyphens...</label>
-           <!-- <span>Enter the number without spaces or hyphens.</span> -->
          </div>
-      <!--   <label>Card Number</label>
-        <input class="card-number input-medium" type="text" size="20" autocomplete="off">
-        <span>Enter the number without spaces or hyphens.</span> -->
       </div>
 
       <!--CVC FIELD-->
@@ -60,24 +61,18 @@
           <input class="card-cvc card-number mdl-textfield__input" type="text" id="card-cvc" autocomplete="off">
           <label class="mdl-textfield__label" for="card-cvc">CVC</label>
         </div>
-        <!-- <label>CVC</label>
-        <input class="card-cvc input-mini" type="text" size="4" autocomplete="off"> -->
       </div>
 
       <!--EXPIRATION DATE FIELD-->
       <div class="flex">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
           <input class="card-expiry-month card-cvc card-number mdl-textfield__input" type="text" id="card-expiry-month" autocomplete="off">
-          <label class="mdl-textfield__label" for="card-expiry-month">Month (MM)</label>
+          <label class="mdl-textfield__label" for="card-expiry-month">Expiration Month (MM)</label>
         </div>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
           <input class="card-expiry-year card-cvc card-number mdl-textfield__input" type="text" id="card-expiry-year" autocomplete="off">
-          <label class="mdl-textfield__label" for="card-expiry-year">Year (YYYY)</label>
+          <label class="mdl-textfield__label" for="card-expiry-year">Expiration Year (YYYY)</label>
         </div>
-        <!-- <label>Expiration (MM/YYYY)</label>
-        <input class="card-expiry-month input-mini" type="text" size="2">
-        <span> / </span>
-        <input class="card-expiry-year input-mini" type="text" size="4"> -->
       </div>
 
       <!--SUBMIT BUTTON-->
@@ -85,10 +80,11 @@
         <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="submitBtn">
           SEND PAYMENT
         </button>
-        <!-- <button type="submit" class="btn" id="submitBtn">Submit Payment</button> -->
       </div>
     </form>
   </div>
+<!--END PAYMENT FORM-->
+
 
   </body>
 </html>

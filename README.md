@@ -22,6 +22,9 @@ Utilizes angular's material-UI, autocomplete, and ngMessages for input validatio
 -From root directory in terminal, run "node server/server.js" <br />
 -Point your browser to the address: http://localhost:5000 <br />
 
+#Test Payments
+-Find test card numbers here: https://stripe.com/docs/testing <br />
+
 #Upon Successful Payment Submission
 -The paid.html page will load, showing the generated stripe payment token.
 

@@ -34,65 +34,6 @@ header {
   justify-content: center;
 }
 
-/* FLEX BOX STYLING FOR USER INPUT FORM */
-
-.innerSearchBox {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin-left: 2%;
-  margin-right: 2%;
-}
-
-.middleSearchBox {
-  margin-top: 5%;
-  margin-bottom: 5%;
-}
-
-.outerSearchBox {
-  background-color: white;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px; /* future proofing */
-  -khtml-border-radius: 10px; /* for old Konqueror browsers */
-  margin-left: 10%;
-  margin-right: 10%;
-}
-
-.md-whiteframe-z1 {
-    box-shadow: none;
-    background-color: white;
-}
-
-/* ELEMENTS WITHIN EACH FORM GROUP */
-
-label {
-  font-family: Geneva, Verdana, serif;
-}
-
-.extended {
-   display: block;
-   margin-top: 15px;
-   content:" ";
-}
-
-/* BUTTONS AND ICONS */
-
-.searchButton {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-
-md-icon {
-  fill: black;
-}
-
-button:hover {
-  opacity: .7;
-}
-
 /* ERROR MESSAGES */
 
 .error-message {
@@ -111,6 +52,10 @@ div.pay-form {
   padding-top: 50px;
   margin-left: 20%;
   margin-right: 20%;
+}
+
+button:hover {
+  opacity: .7;
 }
 
 /* STANDARD MEDIA QUERY BREAK POINTS IF NECESSARY FOR ADDITONAL FUNCTIONALITY */
